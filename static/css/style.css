@@ -1,0 +1,45 @@
+/* Modern minimal styles */
+
+body {
+    background-color: #f0f2f5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #343a40;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    margin-top: 24px;
+}
+
+h2,
+h4,
+h5 {
+    font-weight: 600;
+}
+
+canvas {
+    background: #fff;
+    border-radius: 8px;
+    padding: 8px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 123, 255, 0.03);
+}
+
+.btn {
+    border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 16px;
+    }
+    canvas {
+        height: 260px !important;
+    }
+}

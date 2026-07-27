@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard - Hostel Food</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Daily Feedback Dashboard</h2>
+
+  <div class="row mb-4">
+    <div class="col-md-8 offset-md-2">
+      <canvas id="ratingChart"></canvas>
+    </div>
+  </div>
+
+  <h4 class="mt-4">Meal-wise Averages</h4>
+  <table class="table table-striped mt-2">
+    <thead>
+      <tr>
+        <th>Meal Type</th>
+        <th>Average Rating</th>
+        <th>Entries</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in data %}
+      <tr>
+        <td>{{ row['meal_type'] }}</td>
+        <td>
+          <span class="{% if row['avg_rating']|float >= 4 %}text-success{% elif row['avg_rating']|float >= 3 %}text-warning{% else %}text-danger{% endif %}">
+            {{ '%.2f'|format(row['avg_rating']) }}
+          </span>
+        </td>
+        <td>{{ row['count'] }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <div class="mt-3">
+    <a href="{{ url_for('index') }}" class="btn btn-outline-primary">Back to Feedback Form</a>
+    <a href="{{ url_for('summary') }}" class="btn btn-success">Go to Summary</a>
+  </div>
+</div>
+
+<script>
+  const labels = {{ data | map(attribute='meal_type') | list | safe }};
+  const averages = {{ data | map(attribute='avg_rating') | list | safe }};
+
+  const ctx = document.getElementById('ratingChart').getContext('2d');
+  const chart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Average Rating',
+        data: averages,
+        backgroundColor: ['rgba(75,192,192,0.6)','rgba(255,206,86,0.6)','rgba(255,99,132,0.6)'],
+        borderColor: ['rgba(75,192,192,1)','rgba(255,206,86,1)','rgba(255,99,132,1)'],
+        borderWidth: 1
+      }]
+    },
+    options: { scales: { y: { beginAtZero: true, max: 5 } }, animation: {duration: 1000} }
+  });
+</script>
+</body>
+</html>
