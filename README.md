@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Hostel Food Feedback System
 
 A small Flask web app to collect daily hostel meal feedback from students, visualize results, and export summary reports.
@@ -18,20 +18,6 @@ A web-based application designed to collect and manage student feedback on hoste
 # Hostel Food Feedback System
 
 A web-based application designed to help students submit feedback about hostel meals and assist hostel administrators in monitoring and improving food quality. This project focuses on creating an interactive, user-friendly interface for collecting, managing, and analyzing feedback efficiently.
-
----
-
-## Table of Contents
-
-- [Project Overview](#project-overview)
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Screenshots](#screenshots)
-- [Contributing](#contributing)
-- [License](#license)
-- [Acknowledgements](#acknowledgements)
 
 ---
 
